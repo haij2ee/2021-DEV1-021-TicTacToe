@@ -1,47 +1,55 @@
 package be.nguyenconsulting.demo.tictactoe;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import java.util.Scanner;
 import org.springframework.core.env.Environment;
+
+import java.util.Scanner;
 
 @SpringBootApplication
 public class TictactoeApplication implements CommandLineRunner {
 
-	@Autowired
-	private Environment env;
+    @Autowired
+    private Environment env;
 
-	public  int GRID = 3;
+    @Value("${board.size}")
+    public static int GRID;
 
-	private static Logger LOG = LoggerFactory.getLogger(TictactoeApplication.class);
+    private static Logger LOG = LoggerFactory.getLogger(TictactoeApplication.class);
 
-	public static void main(String[] args) {
-		LOG.info("STARTING THE APPLICATION");
+    @Autowired
+    private Game game;
 
-		SpringApplication.run(TictactoeApplication.class, args);
+    public static void main(String[] args) {
+        LOG.info("STARTING THE APPLICATION");
 
-		Scanner scanner = new Scanner(System.in);
-		String x = scanner.nextLine();
-		LOG.info("x" +x);
-
-		LOG.info("APPLICATION FINISHED");
-
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-		LOG.info("EXECUTING : command line runner");
+        SpringApplication.run(Game.class, args);
 
 
-		for (int i = 0; i < args.length; ++i) {
-			LOG.info("args[{}]: {}", i, args[i]);
-		}
-	}
+        LOG.info("APPLICATION FINISHED");
+
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        LOG.info("EXECUTING : command line runner");
 
 
+        for (int i = 0; i < args.length; ++i) {
+            LOG.info("args[{}]: {}", i, args[i]);
+        }
+    }
+
+    public Environment getEnv() {
+        return env;
+    }
+
+    public int getGRID() {
+        return GRID;
+    }
 }
