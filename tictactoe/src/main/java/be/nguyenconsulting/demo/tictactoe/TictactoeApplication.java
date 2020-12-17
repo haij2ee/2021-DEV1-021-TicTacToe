@@ -9,8 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 
-import java.util.Scanner;
-
 @SpringBootApplication
 public class TictactoeApplication implements CommandLineRunner {
 
