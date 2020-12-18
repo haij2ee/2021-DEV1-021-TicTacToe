@@ -2,23 +2,24 @@ package be.nguyenconsulting.demo.tictactoe.entity;
 
 
 import be.nguyenconsulting.demo.tictactoe.Game;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.Scanner;
-import lombok.Getter;
-import lombok.Setter;
 
 @Component
 public class Player {
 
     private static final Logger LOG = LoggerFactory.getLogger(Player.class);
-    @Getter  private String name;
+    @Getter
+    private String name;
 
 
-    @Getter private String symbol;
+    @Getter
+    private String symbol;
 
 
     public Player(String name, String symbol) {
@@ -42,8 +43,8 @@ public class Player {
     }
 
     public void playMove(Game game) {
-        LOG.debug("playMove");
-        System.out.println("Enter your x,y positions -> For first row and first column enter 1,1");
+        System.out.println("Dear  " + this.getName() + " you are assigned with the symbol: " + this.getSymbol());
+        System.out.println("It's your turn , please Enter your x,y positions as Integer values which are not bigger than " + Game.SIZE + ", -> For first row and first column enter 1,1");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.next();
         try {
